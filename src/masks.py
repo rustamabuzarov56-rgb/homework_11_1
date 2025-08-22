@@ -2,7 +2,7 @@ def get_mask_card_number(number: int) -> str:
     """Функция принимает на вход номер карты и возвращает ее маску"""
     number_str = str(number)
     if len(number_str) != 16:
-        return "Карта должна сосотоять из 16 цифр"
+        return "Карта должна состоять из 16 цифр"
     return f"{number_str[0:4]} {number_str[4:6]}** **** {number_str[12:]}"
 
 
