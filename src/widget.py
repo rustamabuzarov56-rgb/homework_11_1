@@ -11,28 +11,13 @@ def mask_account_card(account_card: str) -> str:
                 card_type += i
     return card_type + f"{account_card[-16:-12]} {account_card[-12:-10]}** **** {account_card[-4:]}"
 
-result = mask_account_card("Visa Platinum 8990922113665229")
+result_1 = mask_account_card("Visa Platinum 8990922113665229")
+print(result_1)
+
+
+def get_date(date: str) -> str:
+    """Функция которая возвращает строку с датой в формате 'ДД.ММ.ГГГГ' """
+    return f"{date[8:10]}.{date[5:7]}.{date[:4]}"
+
+result = get_date("2024-03-11T02:26:18.671407")
 print(result)
-
-
-
-
-
-
-
-
-
-
-    # def get_mask_card_number(number: int) -> str:
-    #     """Функция принимает на вход номер карты и возвращает ее маску"""
-    #     number_str = str(number)
-    #     if len(number_str) != 16:
-    #         return "Карта должна сосотоять из 16 цифр"
-    #     return f"{number_str[0:4]} {number_str[4:6]}** **** {number_str[12:]}"
-    #
-    # def get_mask_account(account_number: int) -> str:
-    #     """Функция принимает на вход номер счета и возвращает маску"""
-    #     account_number_str = str(account_number)
-    #     if len(account_number_str) != 20:
-    #         return "Счет должен состоять из 20 цифр"
-    #     return f"**{account_number_str[-4:]}"
