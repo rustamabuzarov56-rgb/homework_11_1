@@ -8,7 +8,7 @@ def mask_account_card(account_card: str) -> str:
             if i.isalpha() or i == " ":
                 card_type += i
     return card_type + f"{account_card[-16:-12]} {account_card[-12:-10]}** **** {account_card[-4:]}"
-
+print(mask_account_card("Visa Platinum 7000792289606361"))
 
 def get_date(date: str) -> str:
     """Функция которая возвращает строку с датой в формате 'ДД.ММ.ГГГГ'"""
