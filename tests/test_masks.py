@@ -1,7 +1,5 @@
 import pytest
-
 from src.masks import get_mask_card_number, get_mask_account
-from tests.conftest import account_number_2
 
 @pytest.mark.parametrize("card_num, expected_result", [
     ("7000792289606361", "7000 79** **** 6361"),
