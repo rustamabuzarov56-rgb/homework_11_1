@@ -26,4 +26,3 @@ def test_get_short_date(short_date):
 
 def test_get_date_missing(date_missing):
     assert get_date(date_missing) == "Дата отсутствует"
-
