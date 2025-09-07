@@ -24,7 +24,7 @@ line_length = 119
 [tool.mypy]
 disallow_untyped_defs = true
 warn_return_any = true
-exclude = 'venv'
+exclude = "venv, tests"
 
 
 [build-system]
@@ -41,4 +41,8 @@ mypy = "^1.17.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.1"
+
+
+[tool.poetry.group.def.dependencies]
+pytest-cov = "^6.3.0"
 
