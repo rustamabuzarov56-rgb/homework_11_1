@@ -85,4 +85,6 @@ def filter_by_currency(transactions, currency):
         if item["operationAmount"]["currency"]["code"] == currency:
             yield item
 
-
+def transaction_descriptions(transactions):
+    for transact in transactions:
+        yield transact["description"]
