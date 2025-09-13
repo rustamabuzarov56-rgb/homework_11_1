@@ -1,3 +1,5 @@
+from typing import Iterator
+
 transactions = (
     [
         {
@@ -78,13 +80,25 @@ transactions = (
     ]
 )
 
-def filter_by_currency(transactions, currency):
+def filter_by_currency(transactions: list[dict], currency: str) -> Iterator[dict]:
     """Функция возвращаeт итератор, который поочередно выдает транзакции,
      где валюта операции соответствует заданной (например, USD)."""
     for item in transactions:
         if item["operationAmount"]["currency"]["code"] == currency:
             yield item
 
-def transaction_descriptions(transactions):
+def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
+    """ Генератор который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди"""
     for transact in transactions:
         yield transact["description"]
+
+
+def card_number_generator(start, end):
+    """ Генератор, который выдает номера банковских карт в формате XXXX XXXX XXXX XXXX"""
+    for i in range(start, end + 1):
+        card_number = f"{i:016d}"
+        formatting_card_number = " ".join(card_number[i: i + 4] for i in range(0, 16, 4))
+        yield formatting_card_number
+
+
+
