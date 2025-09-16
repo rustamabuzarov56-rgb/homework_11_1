@@ -116,8 +116,9 @@ def checklist():
         },
     ]
 
+
 @pytest.fixture
-def transactions_list_cut() :
+def transactions_list_cut():
     return [
         {
             "id": 939719570,
@@ -139,9 +140,11 @@ def transactions_list_cut() :
         },
     ]
 
+
 @pytest.fixture
 def empty_list():
     return []
+
 
 @pytest.fixture
 def card_number():
