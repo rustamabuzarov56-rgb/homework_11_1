@@ -21,8 +21,17 @@ def log(filename: None = None) -> Callable:
                     print(f"{func.__name__} ok\n")
                 return result
             except Exception as e:
-                print(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
-
+                if filename:
+                    with open("mylog.txt", "w", encoding="utf-8") as file:
+                        file.write(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
+                else:
+                    print(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
         return inner
 
     return wrapper
+
+@log()
+def my_function(x, y):
+    return x + y
+
+my_function(5, 2)
