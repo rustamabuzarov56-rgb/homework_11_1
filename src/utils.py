@@ -14,6 +14,7 @@ def get_transaction_data(path: str) -> list[dict]:
         return []
     return transaction_data
 
-print(get_transaction_data("../data/data.json"))
+print(get_transaction_data("../data/test_data.json"))
+
 
 

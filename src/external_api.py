@@ -21,7 +21,7 @@ def get_transaction_amount(transactions: dict) -> float:
         url = f"https://api.apilayer.com/exchangerates_data/latest?symbols={symbols}&base={base}"
         response = requests.get(url, headers=headers)
         result = response.json()
-        return result["rates"]["RUB"]
+        return result #["rates"]["RUB"]
     if transactions["operationAmount"]["currency"]["code"] == "EUR":
         base = "EUR"
         symbols = "RUB"
@@ -29,7 +29,7 @@ def get_transaction_amount(transactions: dict) -> float:
         url = f"https://api.apilayer.com/exchangerates_data/latest?symbols={symbols}&base={base}"
         response = requests.get(url, headers=headers)
         result = response.json()
-        return result["rates"]["RUB"]
+        return result #["rates"]["RUB"]
 
 
 
