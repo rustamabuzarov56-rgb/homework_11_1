@@ -16,15 +16,31 @@ def get_transaction_amount(transactions: dict) -> Any:
         base = "USD"
         symbols = "RUB"
         headers = {"apikey": apikey}
-        url = f"https://api.apilayer.com/exchangerates_data/latest?symbols={symbols}&base={base}"
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to={symbols}&from={base}&amount=5"
         response = requests.get(url, headers=headers)
         result = response.json()
-        return result["rates"]["RUB"]
+        return result["result"]
     if transactions["operationAmount"]["currency"]["code"] == "EUR":
         base = "EUR"
         symbols = "RUB"
         headers = {"apikey": apikey}
-        url = f"https://api.apilayer.com/exchangerates_data/latest?symbols={symbols}&base={base}"
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to={symbols}&from={base}&amount=5"
         response = requests.get(url, headers=headers)
         result = response.json()
-        return result["rates"]["RUB"]
+        return result["result"]
+
+print(get_transaction_amount({
+    "id": 41428829,
+    "state": "EXECUTED",
+    "date": "2019-07-03T18:35:29.512364",
+    "operationAmount": {
+      "amount": "8221.37",
+      "currency": {
+        "name": "USD",
+        "code": "USD"
+      }
+    },
+    "description": "Перевод организации",
+    "from": "MasterCard 7158300734726758",
+    "to": "Счет 35383033474447895560"
+  }))

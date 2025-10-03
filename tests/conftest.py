@@ -156,22 +156,6 @@ def card_number():
         "0000 0000 0000 0005",
     ]
 
-
-@pytest.fixture
-def json_data_1():
-    return '[{"name": "руб.","code": "RUB"}, {"name": "USD","code": "USD"}]'
-
-
-@pytest.fixture
-def json_data_2():
-    return '{"name": "руб.","code": "RUB"}'
-
-
-@pytest.fixture
-def json_data_empty():
-    return "[]"
-
-
 @pytest.fixture
 def test_transaction_list():
     return {
