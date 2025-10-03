@@ -1,5 +1,4 @@
 import pytest
-import json
 
 
 @pytest.fixture
@@ -157,41 +156,30 @@ def card_number():
         "0000 0000 0000 0005",
     ]
 
-@pytest.fixture
-def valid_data_file(tmp_path):
-    data = {"name": "Test", "value": 123}
-    file = tmp_path / "valid_data.json"
-    with open(file, 'w', encoding='utf-8') as f:
-        json.dump(data, f)
-    return file
 
 @pytest.fixture
 def json_data_1():
     return '[{"name": "руб.","code": "RUB"}, {"name": "USD","code": "USD"}]'
 
+
 @pytest.fixture
 def json_data_2():
     return '{"name": "руб.","code": "RUB"}'
+
 
 @pytest.fixture
 def json_data_empty():
     return "[]"
 
+
 @pytest.fixture
 def test_transaction_list():
     return {
-    "id": 41428829,
-    "state": "EXECUTED",
-    "date": "2019-07-03T18:35:29.512364",
-    "operationAmount": {
-      "amount": "100.0",
-      "currency": {
-        "name": "USD",
-        "code": "RUB"
-      }
-    },
-    "description": "Перевод организации",
-    "from": "MasterCard 7158300734726758",
-    "to": "Счет 35383033474447895560"
-  }
-
+        "id": 41428829,
+        "state": "EXECUTED",
+        "date": "2019-07-03T18:35:29.512364",
+        "operationAmount": {"amount": "100.0", "currency": {"name": "USD", "code": "RUB"}},
+        "description": "Перевод организации",
+        "from": "MasterCard 7158300734726758",
+        "to": "Счет 35383033474447895560",
+    }

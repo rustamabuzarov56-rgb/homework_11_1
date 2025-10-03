@@ -1,16 +1,23 @@
-import pytest
-import json
+import unittest
+from unittest.mock import mock_open, patch
+
 from src.utils import get_transaction_data
 
-def test_get_transaction_data_1(json_data_1):
-    data = json.loads(json_data_1)
-    assert data == [{"name": "руб.","code": "RUB"}, {"name": "USD","code": "USD"}]
 
-def test_get_transaction_data_2(json_data_2):
-    data = json.loads(json_data_2)
-    assert data == {"name": "руб.","code": "RUB"}
+class TestInputTransaction(unittest.TestCase):
 
-def test_get_transaction_data_empty(json_data_empty):
-    data = json.loads(json_data_empty)
-    assert data == []
+    def test_valid_data(self):
+        mock_data = '[{"id": 1, "amount": 100}]'
+        with patch("builtins.open", mock_open(read_data=mock_data)):
+            result = get_transaction_data("path/to/mockfile.json")
+            self.assertEqual(result, [{"id": 1, "amount": 100}])
 
+    def test_empty_file(self):
+        with patch("builtins.open", mock_open(read_data="")):
+            result = get_transaction_data("path/to/mockfile.json")
+            self.assertEqual(result, [])
+
+    def test_file_not_found(self):
+        with patch("builtins.open", side_effect=FileNotFoundError):
+            result = get_transaction_data("path/to/mockfile.json")
+            self.assertEqual(result, [])
