@@ -28,4 +28,3 @@ def get_transaction_amount(transactions: dict) -> Any:
         response = requests.get(url, headers=headers)
         result = response.json()
         return result["result"]
-
