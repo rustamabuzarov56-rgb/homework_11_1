@@ -1,0 +1,30 @@
+import os
+from typing import Any
+
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+apikey = os.getenv("API_KEY")
+
+
+def get_transaction_amount(transactions: dict) -> Any:
+    """Функция принимает на вход транзакцию и возвращает сумму транзакции в рублях"""
+    if transactions["operationAmount"]["currency"]["code"] == "RUB":
+        return transactions["operationAmount"]["amount"]
+    if transactions["operationAmount"]["currency"]["code"] == "USD":
+        base = "USD"
+        symbols = "RUB"
+        headers = {"apikey": apikey}
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to={symbols}&from={base}&amount=5"
+        response = requests.get(url, headers=headers)
+        result = response.json()
+        return result["result"]
+    if transactions["operationAmount"]["currency"]["code"] == "EUR":
+        base = "EUR"
+        symbols = "RUB"
+        headers = {"apikey": apikey}
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to={symbols}&from={base}&amount=5"
+        response = requests.get(url, headers=headers)
+        result = response.json()
+        return result["result"]

@@ -26,12 +26,7 @@ def log(filename: None = None) -> Callable:
                         file.write(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
                 else:
                     print(f"{func.__name__} error: {e}. Inputs: {args}, {kwargs}")
+
         return inner
 
     return wrapper
-
-@log()
-def my_function(x, y):
-    return x + y
-
-my_function(5, 2)
