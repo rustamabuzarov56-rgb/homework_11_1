@@ -155,15 +155,3 @@ def card_number():
         "0000 0000 0000 0004",
         "0000 0000 0000 0005",
     ]
-
-@pytest.fixture
-def test_transaction_list():
-    return {
-        "id": 41428829,
-        "state": "EXECUTED",
-        "date": "2019-07-03T18:35:29.512364",
-        "operationAmount": {"amount": "100.0", "currency": {"name": "USD", "code": "RUB"}},
-        "description": "Перевод организации",
-        "from": "MasterCard 7158300734726758",
-        "to": "Счет 35383033474447895560",
-    }
