@@ -25,6 +25,9 @@
 5.Установите библиотеку python-dotenv
 ```poetry add python-dotenv```
 
+6.Установите библиотеку pandas
+```poetry add pandas```
+
 ## Функции
 ## get_mask_card_number - маскирует номер банковской карты.
 
@@ -120,6 +123,29 @@ my_function(3, 0)  # Запишет информацию об ошибке
 ### функция get_transaction_data - принимает на вход путь до JSON-файла и возвращает список словарей с данными о финансовых транзакциях
 
 ### функция get_transaction_amount - принимает на вход транзакцию и возвращает сумму транзакции в рублях
+
+### функция read_transactions_from_csv - принимает на вход файл формата csv и преобразут его в список словарей
+
+```
+def read_transactions_from_csv('transaction_id;amount;currency\n1;100.00;USD\n2;-50.00;EUR\n')
+выход функции - [
+            {"transaction_id": "1", "amount": "100.00", "currency": "USD"},
+            {"transaction_id": "2", "amount": "-50.00", "currency": "EUR"}
+        ]
+```
+### функция read_transactions_from_xlsx - принимает на вход файл формата xlsx и преобразут его в список словарей
+```
+read_transactions_from_xlsx({
+            'TransactionID': ['T1', 'T2'],
+            'Amount': [100.0, -50.0],
+            'Currency': ['USD', 'EUR']
+        })
+выход функции - [
+            {'TransactionID': 'T1', 'Amount': 100.0, 'Currency': 'USD'},
+            {'TransactionID': 'T2', 'Amount': -50.0, 'Currency': 'EUR'}
+        ]
+```
+
 
 ```
 ## Для запуска тестов выполните:

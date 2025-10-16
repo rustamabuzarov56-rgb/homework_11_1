@@ -156,6 +156,7 @@ def card_number():
         "0000 0000 0000 0005",
     ]
 
+
 @pytest.fixture
 def test_transaction_list():
     return {
