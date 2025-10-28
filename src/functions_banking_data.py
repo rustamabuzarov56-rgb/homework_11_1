@@ -22,3 +22,21 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
 
     return result
 
+def process_bank_operations(data:list[dict], categories:list)->dict:
+    """Функция которая принимает список словарей с данными о банковских операциях и список категорий операций
+    и возвращает словарь, в котором ключи — это названия категорий,
+    а значения — это количество операций в каждой категории"""
+    category_count = {}
+
+    for cat in categories:
+        category_count[cat] = 0
+
+    for operation in data:
+        desc = operation.get('description', '')
+        for cat in categories:
+            if cat.lower() in desc.lower():
+                category_count[cat] += 1
+                break
+
+    return category_count
+
