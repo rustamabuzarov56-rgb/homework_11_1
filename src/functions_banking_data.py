@@ -1,4 +1,6 @@
 import re
+from typing import List, Dict
+from collections import Counter
 
 
 def process_bank_search(data: list[dict], search: str) -> list[dict]:
@@ -26,23 +28,37 @@ def process_bank_operations(data:list[dict], categories:list)->dict:
     """Функция которая принимает список словарей с данными о банковских операциях и список категорий операций
     и возвращает словарь, в котором ключи — это названия категорий,
     а значения — это количество операций в каждой категории"""
-    try:
-        result = {category: 0 for category in categories}
 
-        for operation in data:
-            for category in categories:
-                if category.lower() in operation.get('description', '').lower():
-                    result[category] += 1
-                    break  # Каждая операция относится только к одной категории
+    try:
+
+        if not isinstance(data, list):
+            raise ValueError("Параметр 'data' должен быть списком.")
+
+        if not all(isinstance(op, dict) for op in data):
+            raise ValueError("Все элементы параметра 'data' должны быть словарями.")
+
+        if not isinstance(categories, list):
+            raise ValueError("Параметр 'categories' должен быть списком.")
+
+        if not all(isinstance(cat, str) for cat in categories):
+            raise ValueError("Все элементы параметра 'categories' должны быть строками.")
+
+
+        operation_descriptions = []
+        for op in data:
+            description = op.get('description')
+            if description is None or not isinstance(description, str):
+                continue
+            operation_descriptions.append(description)
+
+
+        category_counts = Counter(operation_descriptions)
+
+        result = {}
+        for cat in categories:
+            result[cat] = category_counts.get(cat, 0)
 
         return result
-    except AttributeError as e:
-        print(f"Ошибка: Неправильный формат данных ({e})")
-        return {}
-    except TypeError as e:
-        print(f"Ошибка: Некорректный тип данных ({e})")
-        return {}
     except Exception as e:
-        print(f"Возникла неизвестная ошибка: {e}")
+        print(f"Произошла ошибка: {e}")
         return {}
-

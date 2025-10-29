@@ -40,3 +40,17 @@ class TestBankSearch(unittest.TestCase):
         actual_result = process_bank_search(test_data, search_query)
         self.assertEqual(actual_result, expected_result)
 
+class TestProcessBankOperations(unittest.TestCase):
+    def test_valid_data(self):
+        """Тест с валидными данными"""
+        data = [
+            {'id': 1, 'amount': 1000, 'description': 'food'},
+            {'id': 2, 'amount': 500, 'description': 'transport'},
+            {'id': 3, 'amount': 2000, 'description': 'entertainment'},
+            {'id': 4, 'amount': 800, 'description': 'food'}
+        ]
+        categories = ['food', 'transport', 'entertainment']
+        expected_result = {'food': 2, 'transport': 1, 'entertainment': 1}
+        self.assertEqual(process_bank_operations(data, categories), expected_result)
+
+
