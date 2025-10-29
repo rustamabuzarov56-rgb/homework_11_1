@@ -3,7 +3,8 @@ def filter_by_state(transactions: list[dict], state: str = "EXECUTED") -> list:
     у которых ключ соответствует указанному значению."""
     new_list = []
     for i in transactions:
-        if i["state"] == state:
+        # Проверяем существование ключа 'state' перед сравнением
+        if 'state' in i and i['state'] == state:
             new_list.append(i)
     return new_list
 
