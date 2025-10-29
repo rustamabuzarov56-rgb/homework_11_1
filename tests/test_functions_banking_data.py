@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from src.functions_banking_data import process_bank_search
+from src.functions_banking_data import process_bank_search, process_bank_operations
 
 class TestBankSearch(unittest.TestCase):
 
